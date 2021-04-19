@@ -14,8 +14,8 @@ import java.util.List;
 
 @Service
 public class QueryImpl implements Query {
-    public Boolean query(String username,String password) {
-            Object object=null;
+    public Boolean query(String username, String password) {
+        Object object = null;
         try {
             JdbcTemplate jdbcTemplate = null;
             try {
@@ -25,14 +25,15 @@ public class QueryImpl implements Query {
             }
             String SQL = "select distinct username,password from user where username=? and password=?";
             assert jdbcTemplate != null;
-            object=jdbcTemplate.queryForObject(SQL, new BeanPropertyRowMapper<User>(User.class),username,password);
+            object = jdbcTemplate.queryForObject(SQL, new BeanPropertyRowMapper<User>(User.class), username, password);
         } catch (EmptyResultDataAccessException e) {
-           return false;
+            return false;
         }
         return true;
     }
-    public Boolean queryAdmin(String username,String password){
-        Object object=null;
+
+    public Boolean queryAdmin(String username, String password) {
+        Object object = null;
         try {
             JdbcTemplate jdbcTemplate = null;
             try {
@@ -42,7 +43,7 @@ public class QueryImpl implements Query {
             }
             String SQL = "select distinct username,password from admin where username=? and password=?";
             assert jdbcTemplate != null;
-            object=jdbcTemplate.queryForObject(SQL, new BeanPropertyRowMapper<Admin>(Admin.class),username,password);
+            object = jdbcTemplate.queryForObject(SQL, new BeanPropertyRowMapper<Admin>(Admin.class), username, password);
         } catch (EmptyResultDataAccessException e) {
             return false;
         }
@@ -51,15 +52,37 @@ public class QueryImpl implements Query {
 
     @Override
     public Boolean insert(User user) {
-        try{
-            JdbcTemplate jdbcTemplate=new JdbcTemplate(DBConn.getDataSource());
-            String SQL="insert into user (username, password,email) values (?,?,?)";
-            int s=jdbcTemplate.update(SQL,user.getUsername(),user.getPassword(),user.getEmail());
-            if (s>0){
+        try {
+            JdbcTemplate jdbcTemplate = new JdbcTemplate(DBConn.getDataSource());
+            String SQL = "insert into user (username, password,email) values (?,?,?)";
+            int s = jdbcTemplate.update(SQL, user.getUsername(), user.getPassword(), user.getEmail());
+            if (s > 0) {
                 return true;
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
+        }
+        return false;
+    }
+
+    @Override
+    public Boolean queryByName(String username) {
+        Object o = null;
+
+        JdbcTemplate jdbcTemplate = null;
+        try {
+            jdbcTemplate = new JdbcTemplate(DBConn.getDataSource());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        String SQL = "select username from user where username=?";
+        try {
+            assert jdbcTemplate != null;
+            o = jdbcTemplate.queryForObject(SQL, new BeanPropertyRowMapper<User>(User.class), username);
+        } catch (EmptyResultDataAccessException e) {
+            e.printStackTrace();
+            return true;
         }
         return false;
     }
