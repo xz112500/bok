@@ -1,19 +1,22 @@
 package com.dao;
 
 import com.entity.Admin;
+import com.entity.Comment;
 import com.entity.User;
 import com.util.DBConn;
-import com.util.Rule;
+import com.util.Dateformat;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Date;
 
 @Service
 public class QueryImpl implements Query {
+    Dateformat dateformat=new Dateformat();
+    public static Date date=new Date();
+    String Date= dateformat.dateformat(date);
     public Boolean query(String username, String password) {
         Object object = null;
         try {
@@ -85,6 +88,22 @@ public class QueryImpl implements Query {
             return true;
         }
         return false;
+    }
+
+    @Override
+    public Comment comment(Comment comment) {
+        JdbcTemplate jdbcTemplate=null;
+        try {
+       jdbcTemplate=new JdbcTemplate(DBConn.getDataSource());
+       String SQL="insert into comment (username,date,comment) values (?,?,?)";
+       int i=jdbcTemplate.update(SQL,comment.getUsername(),Date,comment.getComment());
+       if (i>0){
+           return new Comment(comment.getUsername(), Date, comment.getComment());
+       }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return null;
     }
 }
         

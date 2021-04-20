@@ -1,9 +1,7 @@
 package com.dao;
 
+import com.entity.Comment;
 import com.entity.User;
-import com.util.Rule;
-
-import java.util.List;
 
 public interface Query {
      Boolean query(String username,String password);
@@ -13,4 +11,6 @@ public interface Query {
      Boolean insert(User user);
 
      Boolean queryByName(String username);
+
+     Comment comment(Comment comment);
 }
