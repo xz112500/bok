@@ -1,11 +1,11 @@
 package com.service;
 
-import com.entity.Comment;
-import com.entity.User;
+import com.pojo.VO.Comment;
+import com.pojo.dbUser;
 import com.util.ResultDemo;
 
 public interface UserService {
     ResultDemo Query(String username, String password);
-    ResultDemo Insert(User user);
+    ResultDemo Insert(dbUser user);
     ResultDemo comment(Comment comment);
 }

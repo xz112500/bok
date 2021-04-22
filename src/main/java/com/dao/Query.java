@@ -1,16 +1,16 @@
 package com.dao;
 
-import com.entity.Comment;
-import com.entity.User;
+import com.pojo.VO.Comment;
+import com.pojo.dbUser;
+
+import java.util.List;
 
 public interface Query {
-     Boolean query(String username,String password);
+     List<dbUser> query(String username, String password);
 
-     Boolean queryAdmin(String username,String password);
+     dbUser insert(dbUser user);
 
-     Boolean insert(User user);
-
-     Boolean queryByName(String username);
+     List<dbUser> queryByName(String username);
 
      Comment comment(Comment comment);
 }

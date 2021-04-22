@@ -1,10 +1,9 @@
 package com.controller;
 
 import com.dao.Query;
-import com.entity.Comment;
-import com.entity.User;
+import com.pojo.VO.Comment;
+import com.pojo.dbUser;
 import com.service.UserServiceImpl;
-import com.util.Gettoken;
 import com.util.ResultDemo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -12,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @CrossOrigin
-public class ControllerDemo {
+public class UserController {
     @Autowired
     Query query;
     @Autowired
@@ -23,7 +22,7 @@ public class ControllerDemo {
     }
 
     @RequestMapping(value = "/user/register", method = RequestMethod.POST)
-    public ResultDemo insert(@RequestBody User user) {
+    public ResultDemo insert(@RequestBody dbUser user) {
        return userServiceImpl.Insert(user);
     }
 
