@@ -3,6 +3,7 @@ package com;
 import com.dao.Query;
 import com.dao.QueryImpl;
 import com.dao.querycommodityImpl;
+import com.pojo.Order;
 import com.pojo.VO.Comment;
 import com.pojo.dbUser;
 import com.util.Dateformat;
@@ -32,11 +33,13 @@ public class test {
             dbUser dbUser=new dbUser("user","123456","23@qq.com");
             String encoding= DigestUtils.md5DigestAsHex(a.getBytes(StandardCharsets.UTF_8));
             System.out.println(encoding);*/
-            String a="1";
+    /*        String a="1";
             String encodingPass = DigestUtils.md5DigestAsHex(a.getBytes());
-            System.out.println(encodingPass);
+            System.out.println(encodingPass);*/
         /*    System.out.println(query.insert(new dbUser("xa","123456","22@qq.com")));
             System.out.println(query.queryByName("xa").get(0).getPassword());*/
+          /*  System.out.println(querycommodity.search("小"));*/
+   /*         System.out.println(dateformat.dateformat(date));*/
         } catch (Exception e) {
             e.printStackTrace();
         }

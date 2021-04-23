@@ -12,6 +12,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 public class commodityVO implements Serializable {
     private Integer id;
+    private Integer numbers;
     private String name;
     private Integer price;
     private Integer count;
