@@ -1,0 +1,16 @@
+html,
+body,
+#app {
+  height: 100%;
+  margin: 0;
+  padding:0;
+}
+.el-form-item{
+  width:340px!important;
+}
+.search{
+  width:400px!important;
+}
+/*.el-table-column{
+  height: 400px!important;
+}*/
