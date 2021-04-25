@@ -1,26 +1,24 @@
 package com;
 
+import com.dao.Commodity;
 import com.dao.Query;
 import com.dao.QueryImpl;
-import com.dao.querycommodityImpl;
-import com.pojo.Order;
-import com.pojo.VO.Comment;
-import com.pojo.dbUser;
+import com.dao.CommodityImpl;
 import com.util.Dateformat;
 import com.util.Gettoken;
+import io.jsonwebtoken.JwtBuilder;
+import io.jsonwebtoken.Jwts;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.BeanUtils;
-import org.springframework.util.DigestUtils;
 
-import java.nio.charset.StandardCharsets;
 import java.util.Date;
+import java.util.UUID;
 
 public class test {
     Dateformat dateformat=new Dateformat();
     Gettoken gettoken=new Gettoken();
     Query query=new QueryImpl();
     Date date=new Date();
-    com.dao.querycommodity querycommodity=new querycommodityImpl();
+    Commodity Commodity =new CommodityImpl();
     @Test
     public void test(){
         try {
@@ -40,6 +38,11 @@ public class test {
             System.out.println(query.queryByName("xa").get(0).getPassword());*/
           /*  System.out.println(querycommodity.search("小"));*/
    /*         System.out.println(dateformat.dateformat(date));*/
+            String uuid= UUID.randomUUID().toString().replace("-","");
+            JwtBuilder builder= Jwts.builder().setId("111").setAudience("xz");
+            System.out.println(builder);
+            System.out.println(uuid);
+            System.out.println(new Date(System.currentTimeMillis()));
         } catch (Exception e) {
             e.printStackTrace();
         }

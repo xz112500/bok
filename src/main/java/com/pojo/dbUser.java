@@ -14,5 +14,6 @@ public class dbUser implements Serializable {
     private String username;
     private String password;
     private String email;
+    private String ip;
     private String token;
 }

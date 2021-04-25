@@ -20,7 +20,6 @@ public class UserController {
     public ResultDemo Query(String username, String password) {
         return userServiceImpl.Query(username,password);
     }
-
     @RequestMapping(value = "/user/register", method = RequestMethod.POST)
     public ResultDemo insert(@RequestBody dbUser user) {
        return userServiceImpl.Insert(user);

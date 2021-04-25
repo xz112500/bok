@@ -1,7 +1,7 @@
 package com.service;
 
-import com.dao.querycommodityImpl;
-import com.pojo.Order;
+import com.dao.CommodityImpl;
+import com.pojo.dbOrder;
 import com.pojo.VO.Userorder;
 import com.util.ResultDemo;
 import net.sf.json.JSONArray;
@@ -16,7 +16,7 @@ import java.util.List;
 @Service
 public class commServiceImpl implements commService{
     @Autowired
-    querycommodityImpl querycommodity;
+    CommodityImpl querycommodity;
     @Override
     public ResultDemo query(int num,int page,String search) {
         JSONArray jsonArray=JSONArray.fromObject(querycommodity.query(num,page));
@@ -28,16 +28,28 @@ public class commServiceImpl implements commService{
     }
 
     @Override
-    public ResultDemo order(Order order) {
-        List<Order> orders=querycommodity.insert(order);
+    public ResultDemo order(dbOrder dbOrder) {
+        List<dbOrder> dbOrders =querycommodity.insert(dbOrder);
         List<Userorder> userorders=new ArrayList<>();
-       if (orders != null && orders.size() == 1){
-           Userorder userorder=new Userorder();
-           BeanUtils.copyProperties(orders.get(0),userorder);
-           userorders.add(userorder);
-           JSONArray jsonArray=JSONArray.fromObject(userorders);
-           return userorders.size()>0 ?  ResultDemo.ok().meta("data",jsonArray) : null;
-       }
+        int newcount= dbOrder.getAllcount()- dbOrder.getCounts();
+         querycommodity.update(newcount, dbOrder.getNumbers());
+          if (dbOrders != null && dbOrders.size() == 1){
+              Userorder userorder=new Userorder();
+              BeanUtils.copyProperties(dbOrders.get(0),userorder);
+              userorders.add(userorder);
+              JSONArray jsonArray=JSONArray.fromObject(userorders);
+              return userorders.size()>0 ?  ResultDemo.ok().meta("data",jsonArray) : null;
+          }
+          return ResultDemo.error().status(201);
+    }
+
+    @Override
+    public ResultDemo queryOrder(String username) {
+        List<Userorder> list=querycommodity.queryOrder(username);
+        if ( list !=null && list.size()>0){
+            JSONArray jsonArray=JSONArray.fromObject(list);
+            return ResultDemo.ok().meta("data",jsonArray);
+        }
         return ResultDemo.error().status(201);
     }
 }

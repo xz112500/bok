@@ -9,20 +9,21 @@ import java.io.Serializable;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Order implements Serializable {
-    private int numbers;
+public class dbOrder implements Serializable {
+    private Integer numbers;
     private String uname;
     private String username;
     private String commodity;
-    private int price;
+    private Integer price;
     private String address;
-    private int counts;
+    private Integer counts;
+    private Integer allcount;
     private String dates;
     private String phone;
     private String createtime;
 
 
-    public Order(int numbers,String uname, String username, String commodity, int price, String address, int counts, String dates, String phone) {
+    public dbOrder(Integer numbers, String uname, String username, String commodity, Integer price, String address, Integer counts, String dates, String phone, String createtime) {
         this.uname=uname;
         this.numbers = numbers;
         this.username = username;
@@ -32,6 +33,7 @@ public class Order implements Serializable {
         this.counts = counts;
         this.dates = dates;
         this.phone = phone;
+        this.createtime=createtime;
     }
 
 

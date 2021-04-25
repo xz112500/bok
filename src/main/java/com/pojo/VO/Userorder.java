@@ -12,23 +12,22 @@ import java.io.Serializable;
 @NoArgsConstructor
 public class Userorder implements Serializable {
     private String username;
+    private String uname;
+    private String commodity;
+    private Integer price;
+    private String address;
+    private Integer counts;
+    private String dates;
+    private String phone;
+    private String createtime;
 
-    public Userorder(String uname,String username, String commodity, int price, String address, int counts, String dates, String phone) {
-        this.uname=uname;
+    public Userorder(String username, String commodity, Integer price, String address, Integer counts, String createtime, String phone) {
         this.username = username;
         this.commodity = commodity;
         this.price = price;
         this.address = address;
         this.counts = counts;
-        this.dates = dates;
+        this.createtime = createtime;
         this.phone = phone;
     }
-    private String uname;
-    private String commodity;
-    private int price;
-    private String address;
-    private int counts;
-    private String dates;
-    private String phone;
-    private String createtime;
 }

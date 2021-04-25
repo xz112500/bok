@@ -45,13 +45,13 @@ public class QueryImpl implements Query {
             dbUser DbUser=new dbUser();
             JdbcTemplate jdbcTemplate = new JdbcTemplate(DBConn.getDataSource());
 
-            String SQL = "insert into user (username, password,email,token) values (?,?,?,?)";
+            String SQL = "insert into user (username, password,email,token,ip) values (?,?,?,?,?)";
 
             String encodePass=user.getPassword()+user.getUsername()+"fine";
 
             String encodingPass1 = DigestUtils.md5DigestAsHex(encodePass.getBytes());//对密码加密
 
-            int s = jdbcTemplate.update(SQL, user.getUsername(),encodingPass1,user.getEmail(), gettoken.gettoken(user.getUsername(), user.getPassword()));
+            int s = jdbcTemplate.update(SQL, user.getUsername(),encodingPass1,user.getEmail(), gettoken.gettoken(user.getUsername(), user.getPassword()), user.getIp());
             if (s > 0) {
                 DbUser.setUsername(user.getUsername());
                 DbUser.setPassword(encodingPass1);

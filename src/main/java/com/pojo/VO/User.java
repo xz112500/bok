@@ -10,11 +10,8 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 public class User implements Serializable {
-    private String username;
+    private String uname;
     private String email;
     private String token;
 
-    public User(String username) {
-        this.username=username;
-    }
 }

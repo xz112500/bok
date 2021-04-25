@@ -15,6 +15,6 @@ public class commodityVO implements Serializable {
     private Integer numbers;
     private String name;
     private Integer price;
-    private Integer count;
-    private String imglink;
+    private Integer counts;
+    private String img;
 }

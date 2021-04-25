@@ -12,6 +12,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.DigestUtils;
+
 import java.util.List;
 
 @Service
@@ -34,7 +35,7 @@ public class UserServiceImpl implements UserService{
         }return ResultDemo.error().meta("message","请先注册!").status(405);
 
     }
-    public ResultDemo Insert(dbUser user){
+        public ResultDemo Insert(dbUser user){
         boolean flag = query.queryByName(user.getUsername()).size()>0;
         if (!flag) {
             if ((query.insert(user) != null)) {
